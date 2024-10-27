@@ -4,6 +4,7 @@ import {Validator} from "./types/Validator";
 import {InterfaceDeclaration, Project, SourceFile} from "ts-morph";
 import {DataTypeEnum} from "./types/DataTypeEnum";
 import {BlueprintSchema} from "./types/BlueprintSchema";
+import {GeneratorDocEnum} from "./types/GeneratorDocEnum";
 
 export async function processBlueprint(blueprintJsonPath: string, generatedClassesPath = "./src/generated/") : Promise<boolean> {
 
@@ -55,7 +56,7 @@ function writeConverter(sourceFile: SourceFile, interfaceDecl: InterfaceDeclarat
     // Here we need to add the converter Function to MeshJS Data
     sourceFile.addImportDeclaration({
         moduleSpecifier: "@meshsdk/core",
-        namedImports: ["Data"]
+        namedImports: ["Data", "mConStr"]
     })
 
 
@@ -67,8 +68,12 @@ function writeConverter(sourceFile: SourceFile, interfaceDecl: InterfaceDeclarat
             writer.write("return {fields:[");
             interfaceDecl.getProperties().forEach(value => {
                 const docs = value.getJsDocs().map(value => value.getInnerText());
-                if (docs.includes("primitive")) {
+                if (docs.includes(GeneratorDocEnum.PRIMITIVE)) {
                     writer.writeLine("data." + value.getName() + ",");
+                }
+                if (docs.includes(GeneratorDocEnum.CONSTRUCTOR)) {
+                    const index = value.getJsDocs()[1].getInnerText();
+                    writer.writeLine("mConStr(" + index + ", [" + value.getName()+ "ToData(data." + value.getName() + ")]),");
                 }
             });
             writer.write("]} as Data;");
@@ -76,27 +81,57 @@ function writeConverter(sourceFile: SourceFile, interfaceDecl: InterfaceDeclarat
     });
 }
 
-function processSchema(schema: BlueprintSchema, sourceFile : SourceFile, interfaceDecl : InterfaceDeclaration) {
+function processSchema(schema: BlueprintSchema, sourceFile : SourceFile, interfaceDecl : InterfaceDeclaration, docs : string[] = []) {
     switch (schema.dataType) {
         case DataTypeEnum.integer:
             interfaceDecl.addProperty({
                 name: schema.title ? schema.title : interfaceDecl.getName() + "Int",
                 type: "number",
-                docs: ["primitive"]
+                docs: docs.concat([GeneratorDocEnum.PRIMITIVE])
             });
             break;
         case DataTypeEnum.string:
             interfaceDecl.addProperty({
                 name: schema.title ? schema.title : interfaceDecl.getName() + "Str",
                 type: "string",
-                docs: ["primitive"]
+                docs: docs.concat([GeneratorDocEnum.PRIMITIVE])
             });
             break;
         case DataTypeEnum.bytes:
             interfaceDecl.addProperty({
                 name: schema.title ? schema.title : interfaceDecl.getName() + "Bytes",
                 type: "string",
-                docs: ["primitive"]
+                docs: docs.concat([GeneratorDocEnum.PRIMITIVE])
+            });
+            break;
+        case DataTypeEnum.constructor:
+            const newInterface = sourceFile.addInterface({
+                name: schema.title ? schema.title : interfaceDecl.getName() + "Constructor"
+            });
+            schema.fields!.forEach(value => processSchema(value, sourceFile, newInterface));
+            interfaceDecl.addProperty({
+                name: schema.title ? schema.title : interfaceDecl.getName() + "Constructor",
+                type: newInterface.getName(),
+                docs: docs.concat([GeneratorDocEnum.CONSTRUCTOR, schema.index!.toString()])
+            });
+            sourceFile.addFunction({
+                name: schema.title + "ToData",
+                parameters: [{name: "data", type: newInterface.getName()}],
+                returnType: "Data",
+                statements: writer => {
+                    writer.write("return {fields:[");
+                    newInterface.getProperties().forEach(value => {
+                        const docs = value.getJsDocs().map(value => value.getInnerText());
+                        if (docs.includes(GeneratorDocEnum.PRIMITIVE)) {
+                            writer.writeLine("data." + value.getName() + ",");
+                        }
+                        if (docs.includes(GeneratorDocEnum.CONSTRUCTOR)) {
+                            const index = value.getJsDocs()[1].getInnerText();
+                            writer.writeLine("mConStr(" + index + ", [" + value.getName()+ "ToData(data." + value.getName() + ")]),");
+                        }
+                    });
+                    writer.write("]} as Data;");
+                }
             });
             break;
     }
