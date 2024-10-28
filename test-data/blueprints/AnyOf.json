@@ -1,0 +1,44 @@
+{
+  "preamble": {
+    "title": "kammer/simplecontract",
+    "description": "Aiken contracts for project 'kammer/simplecontract'",
+    "version": "0.0.0",
+    "plutusVersion": "v2",
+    "compiler": {
+      "name": "Aiken",
+      "version": "v1.0.21-alpha+4b04517"
+    },
+    "license": "Apache-2.0"
+  },
+  "validators": [
+    {
+      "title": "basic_types.constrTest",
+      "redeemer": {
+        "title": "datum",
+        "schema": {
+          "anyOf": [
+            {
+              "title": "Some",
+              "description": "An Optional value.",
+              "dataType": "constructor",
+              "index": 0,
+              "fields": [
+                {
+                  "title": "owner",
+                  "dataType": "bytes"
+                }
+              ]
+            },
+            {
+              "title": "None",
+              "dataType": "constructor",
+              "index": 1,
+              "fields": [
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
