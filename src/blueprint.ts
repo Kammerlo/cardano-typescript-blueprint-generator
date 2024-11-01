@@ -73,7 +73,16 @@ function processDatum(project: Project, prefix: string, title: string, datum: Bl
 
 export async function processSchema(schema: BlueprintSchema, sourceFile : SourceFile, interfaceDecl : InterfaceDeclaration, docs : string[] = [], project: Project, prefix : string) {
     if(schema.anyOf) {
-        schema.anyOf.forEach(value => processSchema(value, sourceFile, interfaceDecl, docs.concat([GeneratorDocEnum.ANYOF]), project, prefix));
+        const title = schema.title!
+        if (schema.anyOf.length > 1) {
+            schema.anyOf.forEach(value => {
+                value.title = title + value.title // append the title to the schema title
+                processSchema(value, sourceFile, interfaceDecl, docs.concat([GeneratorDocEnum.ANYOF]), project, prefix)
+            });
+        } else {
+            schema = schema.anyOf[0]; // if anyOf has only one element, we can ignore the anyOf
+            schema.title = title + schema.title // append the title to the schema title
+        }
     }
     if(schema.dataType) {
         switch (schema.dataType) {

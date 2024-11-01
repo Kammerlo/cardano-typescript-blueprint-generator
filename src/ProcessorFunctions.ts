@@ -45,7 +45,7 @@ export function processConstructor(sourceFile: SourceFile, schema: BlueprintSche
     });
     sourceFile.addImportDeclaration({
         moduleSpecifier: "./" + schema.title,
-        namedImports: [schema.title!]
+        namedImports: [schema.title!, schema.title! + "ToData"]
     })
 
     writeConverter(constructorSourceFile, newInterface, schema.title! + "ToData");

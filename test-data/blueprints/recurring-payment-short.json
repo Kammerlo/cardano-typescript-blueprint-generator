@@ -1,0 +1,389 @@
+{
+  "preamble": {
+    "title": "easy1staking/cardano-recurring-payment",
+    "description": "Aiken contracts for project 'easy1staking/cardano-recurring-payment'",
+    "version": "0.0.0",
+    "plutusVersion": "v3",
+    "compiler": {
+      "name": "Aiken",
+      "version": "v1.1.3+3d77b5c"
+    },
+    "license": "Apache-2.0"
+  },
+  "validators": [
+    {
+      "title": "automatic_payments.automatic_payments.spend",
+      "datum": {
+        "title": "datum",
+        "schema": {
+          "$ref": "#/definitions/types~1automatic_payments~1AutomatedPayment"
+        }
+      },
+      "compiledCode": "5911c30101003232323232323223225333004323232323253323300a3001300b375400426464646464646464a666024600a0022a66602a60286ea802c540085854ccc048c02400454ccc054c050dd50058a8010b0a999809180180089919191919191919299980e98100010998060008a8050b180f000980f0011bad301c001301c002375a603400260340046eb4c060004c050dd50058b18091baa00a13232323253330143007004153330143007301537540102660046eb0c00cc058dd500799299980a9804180b1baa0011375c6034602e6ea80044dd7180d180b9baa0013001301637546002602c6ea8c064c058dd50040b0991919191919299980d18088050a99980d1808980d9baa00e1330083758601260386ea8054dd71803980e1baa3300101501816132323232323232533302130143022375402a26464646464a66604c6032604e6ea80044c94ccc09cc078c0a0dd50008991919192999815980f18161baa001132323232533302f30223030375400226464a66606266ebc0980144c8c8c8c94ccc0d4c0a0c0d8dd50008a99981a998119bac3024303737540606eb8c0e8c0dcdd500089919919191919191919191919191919191919119191919191919299982799198008009980598060039bab303b3052375404644a6660a800229444c8ccc888c8cc00400400c894ccc168004400c4c8ccc8894ccc16ccdc4a400000420022940dd7182c8009bad305a00133003003305e002305c001375c60a60026eacc150004cc00c00cc160008c15800454ccc13c01454ccc13c00c54ccc13c00840045280a5014a02940cdc499b80375a601860a06ea8074dd6980418281baa01d375a603260a06ea80b4c94ccc138c114c13cdd500089919299982819b89375a601c60a46ea80bcdd6982a98291baa00315333050002100114a02940c94ccc140c10cc144dd5000899192999829182498299baa0011325333053304a30543754607c60aa6ea8c0f8c154dd5006099b880010031337120020066eb4c15cc150dd50008a50303e30533754607860a66ea8028dd6982a98291baa00114a2601260a26ea80b8c94ccc13cc118c140dd50008a51132325333051304830523754002266e24dd6982b18299baa001337006eb4c03cc14cdd501818030010b181e98291baa303b305237540126eb4c150c144dd50009829982a182a182a182a182a182a18281baa02d16303a304f37546074609e6ea8018c94ccc134c100c138dd5000899191919192999829299982919baf374c00698101a000100114a0294454ccc148c114c14cdd501109919299982a1825982a9baa0011323232323232533305a304b305b3754002264a6660b6609c60b86ea80044c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c94ccc1b8c1c40084cc0c003c4cc15c034894ccc1c00084cc0c80344cc17c0244cc17c01c4cc17c0144c94ccc1b806454ccc1b800454ccc1b8060405c5280a5014a066ebc05404c4c94ccc1b8c184c1bcdd50008991919191919299983b983d00109804183d0048b1bad30780013078002375c60ec00260ec0046eb8c1d0004c1c0dd50008b18390010b1bad306f001306f002306d001306d002306b001306b00230690013069002375a60ce00260ce00460ca00260ca0046eb0c18c004c18c008c184004c174dd50008b182f982e1baa001163041305b375400e646464608a660be60c0006660be60c0004660be60c0002660be6ea0c8c94ccc174c150c178dd5000899b800023370466e00cdc199b81375a60c460be6ea8004008c04804120023012010163049305e3754609260bc6ea8054dd6980c982e9baa03a306130610013060001305f001305a375406e66ebcdd30041ba630193756608460b26ea8014cdc4803180b9bab30413058375400866ebcc108c15cdd50019919299982b9825182c1baa0021325333058304b30593754002264a6660b2609860b46ea80044c10ccc174c118c16cdd5180c8029982e98219982e98219982e98219982e982f182d9baa0014bd7025eb812f5c097ae013230443305e3047305c37546034002660bc6088660bc6088660bc66e9520023305e375200297ae04bd7025eb812f5c06eb8c178c16cdd5000982e982d1baa001002305c305937540040022602c004608060ae6ea8c108c15cdd501a1bae3059305637540022c608060aa6ea8c100c154dd5013182b982a1baa0221633710002904044bd18088011808800998049bab30393050375404200a6eb4c148c13cdd50008a51305130523052305230523052304e37540566e092080bab703533304a3375e606e60986ea806cc0c8c130dd5014899baf3035304c37540366e980085281802998021980218031bad3003304b3754030a666092607860946ea80a44c94ccc128c0f4c12cdd50008a99982519b8f375c609e60986ea8004c94ccc12cc0f8c130dd500089bae3050304d375400226eb8c140c134dd5000981b98261baa3037304c3754052297adef6c601616330163758606260966ea8060dd6982718259baa02913006375a600e60966ea8060004c8ccc004004dd6181a18259baa0284bd6f7b6301112999827001080089998018019828801191999112999827982100088028999980b0028019919001180c0009982999bb037520046ea00052f5bded8c044464a6660a660240022980103d87a80001303d33057374c00297ae03333018001005004222325333056304900114c0103d87a8000130403305a375000297ae0337000020046eb8c0e4c138dd50009bae3037304e37540026eb4c0d0c138dd50009828001118261826982698269826800911919980080080180111129998268010800899199802002182880199998090011bae304c0013756609a00244464a66609e601c0022980103d87a80001303933053374c00297ae0323330010010030022225333054002100113233300400430580033333018002375c60a60026eb4c150004888c94ccc158c124004530103d87a8000130403305a375000297ae03370000400260ac004609e0044646600200200444a666094002297adef6c601323304c3376060920026e98c8cc004004dd598258011129998268008a5eb7bdb1804c8cc13ccdd818260009ba83370290001bad304d001330030033051002304f00133003003304e002304c00125333044303700114bd6f7b6300991919800800a5eb7bdb180894ccc1280044cc12ccdd8261014000374c00697adef6c60132323232533304b3372091010000213304f337609801014000374c00e00a2a666096601c00426609e66ec13001014000374c00e00626609e66ec0dd48011ba600133006006003375660980066eb8c128008c138008c130004c8cc0040052f5bded8c044a66609200226609466ec13001014000375000697adef6c60132323232533304a3372091010000213304e337609801014000375000e00a2a666094601a00426609c66ec13001014000375000e00626609c66ec0dd48011ba800133006006003375a60960066eb8c124008c134008c12c0048c120c124c124c12400494ccc1140045288a502302b330453374a9001198229ba90014bd7019822a60103d87a80004bd701192999820981c18211baa0011480004dd6982318219baa0013253330413038304237540022980103d87a8000132330010013756608e60886ea8008894ccc118004530103d87a80001323232325333047300b00215333047300a002130313304b375000297ae014c103d87a8000133006006003375a60900066eb8c118008c128008c120004c8cc004004008894ccc1140045300103d87a80001323232325333046300a002153330463009002130303304a374c00297ae014c103d87a80001330060060033756608e0066eb8c114008c124008c11c0048c8cc004004008894ccc11000452f5bded8c0264646464a66608a60120042a66608a60100042006200a26609266ec0dd48011ba6001330060060033756608c0066eb8c110008c120008c118004dc7a4500372291010022533303d3030303e3754004264646464a666088608e00426601600626464a666086606c00226464a666090609600426464a66608e607400226464a666098609e0042660260022a0082c609a00260926ea800c54ccc11cc0f80044c8c8c8c8c8c94ccc140c14c0085402058dd6982880098288011bad304f001304f002375a609a00260926ea800c58c11cdd50010a8020b182480098229baa00315333043303a00115333046304537540062a0042c2c60866ea80085401458c114004c114008c10c004c0fcdd50010b1111191980080080291299982180089982219bb0375200a6ea00112f5bded8c0264646464a66608866e400240084cc120cdd81ba9009375001000a2a66608866e3c0240084c94ccc114c0e0c118dd500089982499bb037520146094608e6ea80040104010ccc01c0240200044cc120cdd81ba900237500026600c00c0066eb4c11400cdd71821801182380118228009111191980080080291299982100089982199bb0375200a6e980112f5bded8c0264646464a66608666e400240084cc11ccdd81ba9009374c01000a2a66608666e3c0240084c94ccc110c0dcc114dd500089982419bb037520146092608c6ea80040104010ccc01c0240200044cc11ccdd81ba9002374c0026600c00c0066eacc11000cdd7182100118230011822000980080091299981e0008a4c264a66607a00229309919299981e19b90375c607a60820086eb8c0f40084cc014014cc10000800458c104008c0fc004c0fc00488c94ccc0e4c0b00044c8c94ccc0f8c1040085401058dd7181f800981d9baa00315333039303000113232533303e30410021500416375c607e00260766ea800c58c0e4dd50011800981c1baa0312303b303c303c303c303c303c303c303c0011616330013758603e606c6ea800c054c0040048894ccc0e0008530103d87a8000132325333037302a003130213303b375200497ae01333005005001337000069000981e0019bae303a0023301802c02f163300700c3370002a026606860626ea800458cc01402804cc0c8c0cc008c0c4004c0b4dd5181818169baa0011633001323300100100822533302f00114bd70099192999817192999817981318181baa00113371e6eb8c0d0c0c4dd50008040a50301b30303754603660606ea8c064c0c0dd50010998190011980200200089980200200098198011818800807980080091129998170010a6103d87a800013232533302d302000313017330310024bd70099980280280099b8000348004c0c800cc0c0008dd7181618149baa00116301330283754602660506ea8c044c0a0dd5181598141baa001163300e00223375e602660506ea800406cdd61814981518150011bac30280013024375403a604c60466ea805458c094c098008dd6981200098120011bad30220013022002375a604000260386ea804c88c94ccc070c03cc074dd5000899299980e9807180f1baa001132533301e3011301f3754002264646464646464646464a666056605c00426602800e44a66605a00426602c00e44a66605e004201e264600460660066eb8c0c40084c8c008c0c400cdd718178010b1bad302c001302c002375a605400260540046eb0c0a0004c0a0008dd6181300098130011bae3024001302037540022c6044603e6ea800458c010c078dd51803980f1baa3021301e37540022c660086eb0c018c074dd50011191980080099198008009bab300930203754601260406ea800c894ccc08800452f5c0264666444646600200200644a6660500022006264660546e9ccc0a8dd4803198151813800998151814000a5eb80cc00c00cc0b0008c0a8004dd718108009bab3022001330030033026002302400122533302100114a0264a66603e66e3cdd718061bac302400200514a226600600600260480024603c603e603e00244646600200200644a66603c002298103d87a800013232533301d300500213007330210024bd70099802002000981100118100009ba5480008c06cc07000488c8cc00400400c88cc00c004c0080088c06400488c8cc00400400c894ccc064004528099299980b99b8f375c603800400829444cc00c00c004c0700048c05cc060c060c060c060c060c060c060c060004c044dd50049b874801088c94ccc044c0100044c8c94ccc058c0640085401058dd6980b80098099baa00315333011300800115333014301337540062a0042c2c60226ea8008dc3a400060226024004602000260186ea8008dc3a40042c601a601c004601800260180046014002600c6ea800452613656375c002ae6955ceaab9e5573eae815d0aba201",
+      "hash": "8a7c3caa81e7ca549e0ab39e04e210596d7087a7aecbe1ecaac09d91"
+    }
+  ],
+  "definitions": {
+    "AssetName": {
+      "title": "AssetName",
+      "dataType": "bytes"
+    },
+    "ByteArray": {
+      "title": "ByteArray",
+      "dataType": "bytes"
+    },
+    "Data": {
+      "title": "Data",
+      "description": "Any Plutus data."
+    },
+    "Int": {
+      "dataType": "integer"
+    },
+    "List$ByteArray": {
+      "dataType": "list",
+      "items": {
+        "$ref": "#/definitions/ByteArray"
+      }
+    },
+    "List$types/automatic_payments/AssetAmount": {
+      "dataType": "list",
+      "items": {
+        "$ref": "#/definitions/types~1automatic_payments~1AssetAmount"
+      }
+    },
+    "Option$Int": {
+      "title": "Option",
+      "anyOf": [
+        {
+          "title": "Some",
+          "description": "An optional value.",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "$ref": "#/definitions/Int"
+            }
+          ]
+        },
+        {
+          "title": "None",
+          "description": "Nothing.",
+          "dataType": "constructor",
+          "index": 1,
+          "fields": []
+        }
+      ]
+    },
+    "Option$StakeCredential": {
+      "title": "Option",
+      "anyOf": [
+        {
+          "title": "Some",
+          "description": "An optional value.",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "$ref": "#/definitions/StakeCredential"
+            }
+          ]
+        },
+        {
+          "title": "None",
+          "description": "Nothing.",
+          "dataType": "constructor",
+          "index": 1,
+          "fields": []
+        }
+      ]
+    },
+    "PaymentCredential": {
+      "title": "PaymentCredential",
+      "description": "A general structure for representing an on-chain `Credential`.\n\n Credentials are always one of two kinds: a direct public/private key\n pair, or a script (native or Plutus).",
+      "anyOf": [
+        {
+          "title": "VerificationKey",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "$ref": "#/definitions/VerificationKeyHash"
+            }
+          ]
+        },
+        {
+          "title": "Script",
+          "dataType": "constructor",
+          "index": 1,
+          "fields": [
+            {
+              "$ref": "#/definitions/ScriptHash"
+            }
+          ]
+        }
+      ]
+    },
+    "PolicyId": {
+      "title": "PolicyId",
+      "dataType": "bytes"
+    },
+    "ScriptHash": {
+      "title": "ScriptHash",
+      "dataType": "bytes"
+    },
+    "StakeCredential": {
+      "title": "StakeCredential",
+      "description": "Represent a type of object that can be represented either inline (by hash)\n or via a reference (i.e. a pointer to an on-chain location).\n\n This is mainly use for capturing pointers to a stake credential\n registration certificate in the case of so-called pointer addresses.",
+      "anyOf": [
+        {
+          "title": "Inline",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "$ref": "#/definitions/cardano~1address~1Credential"
+            }
+          ]
+        },
+        {
+          "title": "Pointer",
+          "dataType": "constructor",
+          "index": 1,
+          "fields": [
+            {
+              "title": "slot_number",
+              "$ref": "#/definitions/Int"
+            },
+            {
+              "title": "transaction_index",
+              "$ref": "#/definitions/Int"
+            },
+            {
+              "title": "certificate_index",
+              "$ref": "#/definitions/Int"
+            }
+          ]
+        }
+      ]
+    },
+    "VerificationKeyHash": {
+      "title": "VerificationKeyHash",
+      "dataType": "bytes"
+    },
+    "cardano/address/Address": {
+      "title": "Address",
+      "description": "A Cardano `Address` typically holding one or two credential references.\n\n Note that legacy bootstrap addresses (a.k.a. 'Byron addresses') are\n completely excluded from Plutus contexts. Thus, from an on-chain\n perspective only exists addresses of type 00, 01, ..., 07 as detailed\n in [CIP-0019 :: Shelley Addresses](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0019/#shelley-addresses).",
+      "anyOf": [
+        {
+          "title": "Address",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "payment_credential",
+              "$ref": "#/definitions/PaymentCredential"
+            },
+            {
+              "title": "stake_credential",
+              "$ref": "#/definitions/Option$StakeCredential"
+            }
+          ]
+        }
+      ]
+    },
+    "cardano/address/Credential": {
+      "title": "Credential",
+      "description": "A general structure for representing an on-chain `Credential`.\n\n Credentials are always one of two kinds: a direct public/private key\n pair, or a script (native or Plutus).",
+      "anyOf": [
+        {
+          "title": "VerificationKey",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "$ref": "#/definitions/VerificationKeyHash"
+            }
+          ]
+        },
+        {
+          "title": "Script",
+          "dataType": "constructor",
+          "index": 1,
+          "fields": [
+            {
+              "$ref": "#/definitions/ScriptHash"
+            }
+          ]
+        }
+      ]
+    },
+    "cardano/transaction/OutputReference": {
+      "title": "OutputReference",
+      "description": "An `OutputReference` is a unique reference to an output on-chain. The `output_index`\n corresponds to the position in the output list of the transaction (identified by its id)\n that produced that output",
+      "anyOf": [
+        {
+          "title": "OutputReference",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "transaction_id",
+              "$ref": "#/definitions/ByteArray"
+            },
+            {
+              "title": "output_index",
+              "$ref": "#/definitions/Int"
+            }
+          ]
+        }
+      ]
+    },
+    "types/automatic_payments/AssetAmount": {
+      "title": "AssetAmount",
+      "anyOf": [
+        {
+          "title": "AssetAmount",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "policy_id",
+              "$ref": "#/definitions/PolicyId"
+            },
+            {
+              "title": "asset_name",
+              "$ref": "#/definitions/AssetName"
+            },
+            {
+              "title": "amount",
+              "$ref": "#/definitions/Int"
+            }
+          ]
+        }
+      ]
+    },
+    "types/automatic_payments/AutomatedPayment": {
+      "title": "AutomatedPayment",
+      "anyOf": [
+        {
+          "title": "AutomatedPayment",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "owner",
+              "$ref": "#/definitions/cardano~1address~1Address"
+            },
+            {
+              "title": "amount_to_send",
+              "description": "Value to sent periodically",
+              "$ref": "#/definitions/List$types~1automatic_payments~1AssetAmount"
+            },
+            {
+              "title": "payee",
+              "description": "Destination address Payment pub key",
+              "$ref": "#/definitions/cardano~1address~1Address"
+            },
+            {
+              "title": "start_time",
+              "description": "Starting Date Time. Namely time of the first payment should be made",
+              "$ref": "#/definitions/Int"
+            },
+            {
+              "title": "end_time",
+              "description": "If specified, no more payments must be made after end date. This can be used to determine how many payments to make (start_time + (N + 1) * payment_frequency)",
+              "$ref": "#/definitions/Option$Int"
+            },
+            {
+              "title": "payment_interval_hours",
+              "description": "How often to perform a payment",
+              "$ref": "#/definitions/Option$Int"
+            },
+            {
+              "title": "max_payment_delay_hours",
+              "description": "Maximum delay to perform payment within a period. Expressed in hours.",
+              "$ref": "#/definitions/Option$Int"
+            },
+            {
+              "title": "max_fees_lovelace",
+              "description": "max fee customer is willing to pay",
+              "$ref": "#/definitions/Int"
+            }
+          ]
+        }
+      ]
+    },
+    "types/automatic_payments/Redeemer": {
+      "title": "Redeemer",
+      "anyOf": [
+        {
+          "title": "Withdraw",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": []
+        },
+        {
+          "title": "RescueFunds",
+          "dataType": "constructor",
+          "index": 1,
+          "fields": []
+        },
+        {
+          "title": "ExecutePayment",
+          "dataType": "constructor",
+          "index": 2,
+          "fields": [
+            {
+              "title": "in_index",
+              "$ref": "#/definitions/Int"
+            },
+            {
+              "title": "num_batch_payments",
+              "$ref": "#/definitions/Int"
+            },
+            {
+              "title": "operator_index",
+              "$ref": "#/definitions/Int"
+            },
+            {
+              "title": "fee_exempt_user_index",
+              "$ref": "#/definitions/Option$Int"
+            }
+          ]
+        }
+      ]
+    },
+    "types/automatic_payments/Settings": {
+      "title": "Settings",
+      "anyOf": [
+        {
+          "title": "Settings",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "setting_admin_pkh",
+              "$ref": "#/definitions/ByteArray"
+            },
+            {
+              "title": "authorised_operators",
+              "$ref": "#/definitions/List$ByteArray"
+            },
+            {
+              "title": "operator_fee_exempt_users",
+              "$ref": "#/definitions/List$ByteArray"
+            },
+            {
+              "title": "operator_fee_lovelace",
+              "$ref": "#/definitions/Int"
+            },
+            {
+              "title": "base_fee_lovelace",
+              "$ref": "#/definitions/Int"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -3,5 +3,5 @@ import {processBlueprint} from "./blueprint";
 
 
 test("load Blueprint", () => {
-    processBlueprint("./test-data/blueprints/recurring-payment.json");
+    processBlueprint("./test-data/blueprints/recurring-payment-short.json");
 })
