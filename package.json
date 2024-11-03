@@ -1,16 +1,28 @@
 {
-  "name": "cardano-typescript-blueprint-generator",
+  "name": "@kammerlo/cardano-blueprint-generator",
   "version": "0.0.1",
   "description": "Cardano blueprint generation",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "bin": {
+    "cardano-blueprint-generator": "./dist/index.js"
+  },
+  "keywords": [
+    "cardano",
+    "blueprint",
+    "meshJS",
+    "contracts"
+  ],
   "scripts": {
-    "build": "tsup",
+    "build": "npx tsc",
     "dev": "tsup --watch",
     "test": "vitest run",
     "test:watch": "vitest --watch"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Thomas Kammerlocher",
+  "repository": "https://github.com/Kammerlo/cardano-typescript-blueprint-generator",
+  "homepage": "https://github.com/Kammerlo/cardano-typescript-blueprint-generator#readme",
+  "bugs": "https://github.com/Kammerlo/cardano-typescript-blueprint-generator/issues",
+  "license": "Apache-2.0",
   "devDependencies": {
     "tsup": "^8.3.5",
     "typescript": "^5.6.3",
@@ -19,6 +31,8 @@
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "^11.7.2",
     "@meshsdk/core": "^1.7.9",
+    "commander": "^12.1.0",
+    "figlet": "^1.8.0",
     "ts-morph": "^24.0.0"
   }
 }
