@@ -20,7 +20,7 @@ export function writeConverter(sourceFile: SourceFile, interfaceDecl: InterfaceD
             } else {
                 writer.write("return {fields:[");
                 const properties = interfaceDecl.getProperties();
-                for(let i = 0; i < properties.length - 1; i++) {
+                for(let i = 0; i < properties.length; i++) {
                     const value = properties[i];
                     const docs = value.getJsDocs().map(value => value.getInnerText());
                     if(docs.includes(GeneratorDocEnum.PRIMITIVE)) {

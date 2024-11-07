@@ -2,7 +2,6 @@ import {InterfaceDeclaration, Project, SourceFile} from "ts-morph";
 import {BlueprintSchema} from "./types/BlueprintSchema";
 import {GeneratorDocEnum} from "./types/GeneratorDocEnum";
 import {processSchema} from "./blueprint";
-import {addMeshJsDataToFile} from "./util";
 import {writeConverter} from "./converter";
 
 
