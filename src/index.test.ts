@@ -1,7 +1,7 @@
 import {expect, test} from "vitest";
-import {processBlueprint} from "./blueprint";
+import {processBlueprintByFilePath} from "./blueprint";
 
 
 test("load Blueprint", () => {
-    processBlueprint("./test-data/blueprints/recurring-payment-short.json");
+    processBlueprintByFilePath("./test-data/blueprints/BasicTypesBlueprint.json");
 })

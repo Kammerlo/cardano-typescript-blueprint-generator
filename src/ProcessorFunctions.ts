@@ -49,3 +49,17 @@ export function processConstructor(sourceFile: SourceFile, schema: BlueprintSche
 
     writeConverter(constructorSourceFile, newInterface, schema.title! + "ToData");
 }
+
+export function processXOf(schema: BlueprintSchema, sourceFile: SourceFile, interfaceDecl: InterfaceDeclaration, docs: string[], project: Project, prefix: string, docAddition : GeneratorDocEnum, subSchema: BlueprintSchema[]) {
+    const title = schema.title!
+    if (subSchema.length > 1) {
+        subSchema.forEach(value => {
+            value.title = title + value.title // append the title to the schema title
+            processSchema(value, sourceFile, interfaceDecl, docs.concat([docAddition]), project, prefix)
+        });
+    } else {
+        schema = subSchema[0]; // if anyOf has only one element, we can ignore the anyOf
+        schema.title = title + schema.title // append the title to the schema title
+    }
+    return schema;
+}

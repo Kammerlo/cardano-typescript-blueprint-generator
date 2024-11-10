@@ -13,3 +13,4 @@ This repo will contain a typescript blueprint generator for [MeshJS](https://mes
 - [ ] Implement tests
 - [ ] Implement auto generated documentation for the generated code
 - [ ] Add general documentation about the project
+- [ ] Add compiled code to the generated files + script address

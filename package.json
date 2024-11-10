@@ -16,7 +16,8 @@
     "build": "npx tsc",
     "dev": "tsup --watch",
     "test": "vitest run",
-    "test:watch": "vitest --watch"
+    "test:watch": "vitest --watch",
+    "cli": "npx tsc && node dist/index.js"
   },
   "author": "Thomas Kammerlocher",
   "repository": "https://github.com/Kammerlo/cardano-typescript-blueprint-generator",
