@@ -1,5 +1,5 @@
 // write top level converter function
-import {CodeBlockWriter, InterfaceDeclaration, PropertySignature, SourceFile} from "ts-morph";
+import {InterfaceDeclaration, PropertySignature, SourceFile} from "ts-morph";
 import {GeneratorDocEnum} from "./types/GeneratorDocEnum";
 import {addMeshJsDataImportToFile} from "./util";
 
@@ -24,35 +24,37 @@ export function writeConverter(sourceFile: SourceFile, interfaceDecl: InterfaceD
                 writer.write("return [];");
                 return;
             } else {
-                writer.write("return ");
+                let returnStatement = "return ";
                 if(properties.length > 1) {
-                    writer.write("{fields:[");
+                    returnStatement += "{fields:[";
                 }
                 for(let i = 0; i < properties.length; i++) {
                     const docs = properties[i].getJsDocs().map(value => value.getInnerText());
 
-                    handlePrimitivProperty(docs, writer, properties, i);
+                    returnStatement = handlePrimitivProperty(docs, returnStatement, properties, i);
 
-                    i = handleConstructorProperties(docs, writer, properties, i);
+                    [returnStatement, i] = handleConstructorProperties(docs, returnStatement, properties, i);
                 }
                 if(properties.length > 1) {
-                    writer.write("]} as Data;");
+                    returnStatement += "]} as Data;";
                 } else {
-                    writer.write(";");
+                    returnStatement += ";";
                 }
+                writer.write(returnStatement);
             }
         }
     });
 }
 
-function handlePrimitivProperty(docs: string[], writer: CodeBlockWriter, properties: PropertySignature[], i: number) {
+function handlePrimitivProperty(docs: string[], returnStatement: string, properties: PropertySignature[], i: number): string {
     const value = properties[i];
     if (docs.includes(GeneratorDocEnum.PRIMITIVE)) {
-        writer.writeLine("data." + value.getName() + (properties.length > 1 ? "," : ""));
+        returnStatement += "data." + value.getName() + (properties.length > 1 ? "," : "\n");
     }
+    return returnStatement;
 }
 
-function handleConstructorProperties(docs: string[], writer: CodeBlockWriter, properties: PropertySignature[], i: number) {
+function handleConstructorProperties(docs: string[], returnStatement: string, properties: PropertySignature[], i: number): [string, number] {
     if (docs.includes(GeneratorDocEnum.CONSTRUCTOR)) {
         // check if there are multiple possible constructors by checking if the following indexes are increments of the current index
         let indexNameTuple: [number, string][] = [[Number(properties[i].getJsDocs().reverse()[0].getInnerText()), properties[i].getName()]];
@@ -74,13 +76,13 @@ function handleConstructorProperties(docs: string[], writer: CodeBlockWriter, pr
         // if there is only one constructor, we can just call the constructor function
         if (indexNameTuple.length === 1) {
             const value = indexNameTuple[0];
-            writer.writeLine("mConStr(" + value[0] + ", [" + value[1] + "ToData(data." + value[1] + ")])" + (properties.length > 1 ? "," : ""));
+            returnStatement += "mConStr(" + value[0] + ", [" + value[1] + "ToData(data." + value[1] + ")])" + (properties.length > 1 ? "," : "") + "\n";
         } else {
             indexNameTuple.forEach(value => {
-                writer.writeLine("data." + value[1] + " !== undefined ? mConStr(" + value[0] + ", [" + value[1] + "ToData(data." + value[1] + ")]) : ");
+                returnStatement += "data." + value[1] + " !== undefined ? mConStr(" + value[0] + ", [" + value[1] + "ToData(data." + value[1] + ")]) : \n";
             });
-            writer.writeLine("null,");
+            returnStatement += "null,\n";
         }
     }
-    return i;
+    return [returnStatement, i];
 }

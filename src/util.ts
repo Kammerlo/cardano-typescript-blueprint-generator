@@ -12,3 +12,7 @@ export function addMeshJsDataImportToFile(sourceFile : SourceFile) {
 export async function loadBlueprint(path: string): Promise<CIP57Blueprint> {
     return await $RefParser.dereference(path);
 }
+
+export function capitalizeFirstLetter(val: string) {
+    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+}

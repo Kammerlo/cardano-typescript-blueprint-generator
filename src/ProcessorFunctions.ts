@@ -40,7 +40,8 @@ export function processConstructor(sourceFile: SourceFile, schema: BlueprintSche
     interfaceDecl.addProperty({
         name: schema.title ? schema.title : interfaceDecl.getName() + "Constructor",
         type: newInterface.getName(),
-        docs: docs.concat([GeneratorDocEnum.CONSTRUCTOR, schema.index!.toString()])
+        docs: docs.concat([GeneratorDocEnum.CONSTRUCTOR, schema.index!.toString()]),
+        hasQuestionToken: docs.includes(GeneratorDocEnum.ANYOF) || docs.includes(GeneratorDocEnum.ONEOF)
     });
     sourceFile.addImportDeclaration({
         moduleSpecifier: "./" + schema.title,

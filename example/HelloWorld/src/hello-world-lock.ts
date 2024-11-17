@@ -9,9 +9,9 @@ import {
 } from "@meshsdk/core";
 import dotenv from 'dotenv';
 // @ts-ignore
-import {hello_world, toMeshJSData} from "./generated/hello_world/hello_worlddatum";
-// @ts-ignore
 import blueprint from "../hello-world/plutus.json";
+// @ts-ignore
+import {Datum, toMeshJSData} from "./generated/hello_world/Datum";
 dotenv.config();
 
 export const blockfrost_api_key = process.env.BLOCKFROST_API_KEY || "";
@@ -57,11 +57,23 @@ async function lockAsset() {
     const walletAddress = await wallet.getChangeAddress();
     const utxos = await wallet.getUtxos();
     const signerHash = deserializeAddress(walletAddress).pubKeyHash;
-    const datum : hello_world = {
+    // creating Datum object from generated sources from the blueprint
+    const datum : Datum = {
         DatumDatum: {
             owner: signerHash
         }
     }
+    // Using the generated function to convert the Datum object to Data
+    const meshJSData = toMeshJSData(datum);
+
+    console.log(meshJSData);
+    const datum2 = {
+        value: {
+            alternative: 0,
+            fields: [signerHash],
+        },
+    };
+    console.log(datum2);
 
     const txBuilder = new MeshTxBuilder({
         fetcher: blockchainProvider,
@@ -75,7 +87,7 @@ async function lockAsset() {
         }
     ]
 
-    const meshJSData = toMeshJSData(datum);
+
     await txBuilder
         .txOut(scriptAddr, assets)
         .txOutDatumHashValue(meshJSData)
@@ -83,7 +95,7 @@ async function lockAsset() {
         .selectUtxosFrom(utxos)
         .complete();
     const signedTx = await wallet.signTx(txBuilder.txHex);
-    return await wallet.submitTx(signedTx);
+    // return await wallet.submitTx(signedTx);
 }
 
 lockAsset().then(console.log).catch(console.error);
