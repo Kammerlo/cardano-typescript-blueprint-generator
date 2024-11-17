@@ -4,3 +4,4 @@
 **/*.js
 /cardano-typescript-blueprint-generator.iml
 **/.env
+**/build/**
