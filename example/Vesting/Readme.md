@@ -8,7 +8,10 @@ We are using the official `Vesting` example from the [Aiken Documentation](https
 - Copy `.env.example` to `.env` and fill in the required values
 - Run `npm install` to install all dependencies
 - Run `npm run deposit` to lock funds in the smart contract
-- TODO add unlock step
+- To unlock your funds the following steps are needed:
+  - Add `txHash` to `.env` file
+  - Run `npm run withdraw` to unlock the funds
+  - You should see the transaction hash in the console which you can check in your favorite explorer
 
 
 ### Generated Files explained

@@ -9,6 +9,7 @@
     "tsx": "^4.9.4"
   },
   "scripts": {
-    "deposit": "npx tsx src/deposit.ts"
+    "deposit": "npx tsx src/deposit.ts",
+    "withdraw": "npx tsx src/withdraw.ts"
   }
 }
