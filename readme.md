@@ -1,16 +1,35 @@
-# Repo under heavy development, please check back later.
+# Cardano Typescript Blueprint Generator
+This repository will contain a typescript blueprint generator for [Cardano CIP-57](https://developers.cardano.org/docs/governance/cardano-improvement-proposals/cip-0057/).
+The idea is to make the entry for new developer as easy as possible. Filling a datum for a smart contract is challenging at the beginning, due to it's types and the way it is structured. 
+This generator will help to generate the typescript interfaces for the datum and redeemer, which can be used in a typescript project.
 
-This repo will contain a typescript blueprint generator for [MeshJS](https://meshjs.dev/).
+This repository currently contains only the blueprint generator for [MeshJS](https://meshjs.dev/).
 
-### Desired outcomes
-- Generate interface out of a CIP-57 blueprint, which are directly usable with MeshJS
-- Automated generation of converter functions from the generated interfaces to MeshJS Data Object
+#### ToDo List:
+This repository is still under development and will be updated frequently. I'm working on this project as a hobby, so I can't guarantee any deadlines.
+If you are missing anything, feel free to open an issue, where we can discuss all details.
 
-### Todos
-- [ ] Implement all types described in CIP-57
-- [ ] Implement cli to generate the code
-- [ ] Spike options about tsc integration or how to run it in a more embedded way
-- [ ] Implement tests
-- [ ] Implement auto generated documentation for the generated code
-- [ ] Add general documentation about the project
-- [ ] Add compiled code to the generated files + script address
+- [ ] Implement all CIP-57 types
+- [ ] Add more complex examples
+- [ ] Add tests
+
+#### Example Project for Cardano Blueprint Generator
+In this example project, we will generate a blueprint for a simple hello world smart contract. I will add more example projects in the future.
+We are using the `hello-world` example from the official [Aiken Documentation](https://aiken-lang.org/example--hello-world/basics).
+Follow the steps describe in the readme of the example project.
+
+### Installation
+This project can be used an npm package via CLI or as a library in your project.
+
+- To install the CLI:
+  - run `npm i -g @kammerlo/cardano-blueprint-generator`
+  - To generate source simply run: `cardano-blueprint-generator -o <OUTPUT> <PATH_TO_BLUEPRINT_JSON>`
+- To use it as a library:
+  - run `npm i @kammerlo/cardano-blueprint-generator`
+  - ```
+    import {processBlueprintByFilePath} from "./blueprint";
+    processBlueprintByFilePath(<PATH_TO_BLUEPRINT_JSON>, <OUTPUT>);
+    ```
+    
+### Contribution
+If you want to contribute to this project, feel free to open a pull request or an issue. I'm happy to get any feedback or help.
