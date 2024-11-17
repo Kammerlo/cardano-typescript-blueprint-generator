@@ -4,11 +4,12 @@
   "type": "module",
   "dependencies": {
     "@meshsdk/core": "^1.7.3",
+    "cbor": "^10.0.3",
     "dotenv": "^16.4.5",
     "tsx": "^4.9.4"
   },
   "scripts": {
-    "lock": "npx tsx src/hello-world-lock.ts",
-    "unlock": "npx tsx src/unlock-assets.ts"
+    "lock": "npx tsx src/lock.ts",
+    "unlock": "npx tsx src/unlock.ts"
   }
 }

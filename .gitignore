@@ -1,3 +1,6 @@
 /.idea/
 /node_modules/
 /dist/
+**/*.js
+/cardano-typescript-blueprint-generator.iml
+**/.env
