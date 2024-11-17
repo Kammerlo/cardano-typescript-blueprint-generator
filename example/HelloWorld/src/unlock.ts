@@ -1,4 +1,5 @@
 import {BlockfrostProvider, Data, PlutusScript, resolvePaymentKeyHash, Transaction,} from "@meshsdk/core";
+// @ts-ignore
 import dotenv from 'dotenv';
 // @ts-ignore
 import blueprint from "../hello-world/plutus.json";
@@ -8,6 +9,7 @@ import {getScript, getWallet} from './util';
 import * as Datum from "./generated/hello_world/Datum";
 // @ts-ignore
 import * as Redeemer from "./generated/hello_world/Redeemer";
+// @ts-ignore
 import cbor from "cbor";
 
 dotenv.config();
@@ -20,7 +22,7 @@ export const wallet_mnemonic = process.env.MNEMONIC
 const blockchainProvider = new BlockfrostProvider(blockfrost_api_key);
 const wallet = getWallet(wallet_mnemonic, blockchainProvider);
 const compileCode = blueprint.validators[0].compiledCode;
-const { scriptAddr } = getScript(compileCode);
+const { scriptCbor, scriptAddr } = getScript(compileCode);
 
 const script = {
     code: cbor

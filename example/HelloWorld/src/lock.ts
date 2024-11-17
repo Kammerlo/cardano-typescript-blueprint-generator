@@ -4,6 +4,7 @@ import {
     deserializeAddress,
     MeshTxBuilder,
 } from "@meshsdk/core";
+// @ts-ignore
 import dotenv from 'dotenv';
 // @ts-ignore
 import blueprint from "../hello-world/plutus.json";

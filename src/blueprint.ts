@@ -28,13 +28,8 @@ export async function processBlueprint(blueprint: CIP57Blueprint, generatedClass
 export async function processValidator(validator : Validator, project: Project, prefix : string) {
     // title manipulation
     const titleSplit = validator.title.split(".");
-    var title = "";
     if (titleSplit.length > 1) {
         prefix = prefix + "/" + titleSplit[0] + "/";
-        title = titleSplit[1];
-
-    } else {
-        title = titleSplit[0];
     }
     if(validator.datum) {
         processDatum(project, prefix, validator.datum);
@@ -74,7 +69,6 @@ export async function processSchema(schema: BlueprintSchema, sourceFile : Source
     if(schema.allOf) {
         schema = processXOf(schema, sourceFile, interfaceDecl, docs, project, prefix, GeneratorDocEnum.ALLOF, schema.allOf);
     }
-
     if(schema.dataType) {
         switch (schema.dataType) {
             case DataTypeEnum.integer:

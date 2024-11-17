@@ -5,3 +5,4 @@
 /cardano-typescript-blueprint-generator.iml
 **/.env
 **/build/**
+/example/Vesting/node_modules/

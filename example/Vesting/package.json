@@ -1,0 +1,14 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@meshsdk/core": "^1.7.3",
+    "cbor": "^10.0.3",
+    "dotenv": "^16.4.5",
+    "tsx": "^4.9.4"
+  },
+  "scripts": {
+    "deposit": "npx tsx src/deposit.ts"
+  }
+}

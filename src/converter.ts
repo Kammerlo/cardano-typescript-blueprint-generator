@@ -26,7 +26,7 @@ export function writeConverter(sourceFile: SourceFile, interfaceDecl: InterfaceD
             } else {
                 let returnStatement = "return ";
                 if(properties.length > 1) {
-                    returnStatement += "{fields:[";
+                    returnStatement += "[";
                 }
                 for(let i = 0; i < properties.length; i++) {
                     const docs = properties[i].getJsDocs().map(value => value.getInnerText());
@@ -36,7 +36,7 @@ export function writeConverter(sourceFile: SourceFile, interfaceDecl: InterfaceD
                     [returnStatement, i] = handleConstructorProperties(docs, returnStatement, properties, i);
                 }
                 if(properties.length > 1) {
-                    returnStatement += "]} as Data;";
+                    returnStatement += "];";
                 } else {
                     returnStatement += ";";
                 }
